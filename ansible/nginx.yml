@@ -3,5 +3,4 @@
 - hosts: blef
   roles:
     - shared
-    - moon
     - nginx

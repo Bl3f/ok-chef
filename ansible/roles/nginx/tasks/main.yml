@@ -1,0 +1,29 @@
+- name: "Create nginx log folder if not exist"
+  file:
+    path: /var/log/nginx
+    state: directory
+
+- name: "Create nginx configuration folder if not exist"
+  file:
+    path: /opt/nginx/conf.d
+    state: "{{ item }}"
+  with_items:
+    - absent
+    - directory
+
+- name: "Copy nginx conf.d folder to /opt/nginx"
+  template: src="../templates/conf.d/{{ item }}" dest="/opt/nginx/conf.d/{{ item }}"
+  with_items: "{{ nginx_site_enabled }}"
+
+- name: "Launch nginx"
+  docker_container:
+    image: "nginx"
+    name: "nginx"
+    restart: yes
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/opt/nginx/conf.d:/etc/nginx/conf.d:ro"
+      - "/var/log/nginx:/var/log/nginx"
+    network_mode: host
