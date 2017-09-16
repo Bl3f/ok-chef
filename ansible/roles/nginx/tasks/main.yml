@@ -29,4 +29,9 @@
       - "/etc/letsencrypt:/certs/"
       - "/opt/fshare/fshare/fshare.sock:/sockets/fshare.sock"
       - "/opt/fshare/static:/statics/fshare"
+      - "/opt/freespeech/fsp.sock:/sockets/fsp.sock"
+      - "/opt/freespeech/fsp_ws.sock:/sockets/fsp_ws.sock"
+      - "/opt/freespeech/static:/statics/fsp"
+      - "/opt/polaroid/static:/statics/polaroid"
+      - "/opt/polaroid/polaroid.sock:/sockets/polaroid.sock"
     network_mode: host
