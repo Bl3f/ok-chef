@@ -25,9 +25,9 @@
       - "{{ moon_app_path }}:/app"
     command: sh scripts/install.sh
 
-- name: "Run `moon` app"
+- name: "Run `moon` daphne process"
   docker_container:
-    name: "{{ moon_app_name }}"
+    name: "{{ moon_app_name }}-daphne"
     image: "{{ moon_app_name }}"
     ports:
       - "{{ moon_app_port }}:4444"
@@ -37,4 +37,18 @@
     volumes:
       - "{{ moon_app_path }}:/app"
     network_mode: host
-    command: ./manage.py runserver 0.0.0.0:4444
+    command: daphne moon.asgi:channel_layer -p 4444 -b 0.0.0.0
+
+- name: "Run `moon` worker process"
+  docker_container:
+    name: "{{ moon_app_name }}-worker"
+    image: "{{ moon_app_name }}"
+    ports:
+      - "{{ moon_app_port }}:4444"
+    env:
+      REDIS_URL: "redis://127.0.0.1:6379"
+      DEV: "0"
+    volumes:
+      - "{{ moon_app_path }}:/app"
+    network_mode: host
+    command: ./manage.py runworker
