@@ -1,0 +1,29 @@
+- name: "Pull `moon` repo"
+  git:
+    repo: git@github.com:Frky/moon.git
+    dest: "{{ moon_app_path }}"
+
+- name: "Copy local_sample.py to local.py"
+  copy:
+    remote_src: yes
+    src: "{{ moon_app_path }}/moon/settings/local_sample.py"
+    dest: "{{ moon_app_path }}/moon/settings/local.py"
+
+- name: "Build `moon` docker image"
+  docker_image:
+    path: "{{ moon_app_path }}"
+    name: "{{ moon_app_name }}"
+    force: true
+
+- name: "Run `moon` app"
+  docker_container:
+    name: "{{ moon_app_name }}"
+    image: "{{ moon_app_name }}"
+    ports:
+      - "{{ moon_app_port }}:4444"
+    env:
+      REDIS_URL: "redis://127.0.0.1:6379"
+    volumes:
+      - "{{ moon_app_path }}:/app"
+    network_mode: host
+    command: ./manage.py runserver 0.0.0.0:4444

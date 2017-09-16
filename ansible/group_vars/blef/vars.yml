@@ -1,0 +1,5 @@
+---
+
+moon_app_path: /opt/moon
+moon_app_name: moon
+moon_app_port: 4444
