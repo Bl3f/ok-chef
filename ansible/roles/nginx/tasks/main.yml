@@ -26,4 +26,7 @@
     volumes:
       - "/opt/nginx/conf.d:/etc/nginx/conf.d:ro"
       - "/var/log/nginx:/var/log/nginx"
+      - "/etc/letsencrypt:/certs/"
+      - "/opt/fshare/fshare/fshare.sock:/sockets/fshare.sock"
+      - "/opt/fshare/static:/statics/fshare"
     network_mode: host

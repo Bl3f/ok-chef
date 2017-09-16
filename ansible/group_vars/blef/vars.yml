@@ -6,4 +6,4 @@ moon_app_name: moon
 moon_app_port: 4444
 
 # Nginx
-nginx_site_enabled: [ "moon.conf" ]
+nginx_site_enabled: [ "moon.conf", "fshare.conf" ]
