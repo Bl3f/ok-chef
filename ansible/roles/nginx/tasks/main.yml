@@ -34,4 +34,5 @@
       - "/opt/freespeech/static:/statics/fsp"
       - "/opt/polaroid/static:/statics/polaroid"
       - "/opt/polaroid/polaroid.sock:/sockets/polaroid.sock"
+      - "/opt/polaroid/media:/media/polaroid"
     network_mode: host
