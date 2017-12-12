@@ -35,4 +35,7 @@
       - "/opt/polaroid/static:/statics/polaroid"
       - "/opt/polaroid/polaroid.sock:/sockets/polaroid.sock"
       - "/opt/polaroid/media:/media/polaroid"
+      - "/opt/eloquence/static:/statics/eloquence"
+      - "/opt/eloquence/pourparler/eloquence.sock:/sockets/eloquence.sock"
+      - "/opt/eloquence/media:/media/eloquence"
     network_mode: host

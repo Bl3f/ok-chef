@@ -1,0 +1,24 @@
+- name: "Pull `eloquence` repo"
+  git:
+    repo: git@github.com:Frky/pourparler.git
+    dest: "{{ eloq_app_path }}"
+
+- name: "Copy local_sample.py to local.py"
+  copy:
+    remote_src: no
+    src: "roles/eloquence/src/settings.py"
+    dest: "{{ eloq_app_path }}/pourparler/pourparler/settings/local.py"
+
+- name: "Build `eloquence` docker image"
+  docker_image:
+    path: "{{ eloq_app_path }}/pourparler"
+    name: "{{ eloq_app_name }}"
+    force: true
+
+- name: "Run `eloquence` docker"
+  docker_container:
+    name: "{{ eloq_app_name }}"
+    image: "{{ eloq_app_name }}"
+    volumes:
+      - "{{ eloq_app_path }}/pourparler:/app"
+      - "{{ eloq_app_path }}/static:/app/static"

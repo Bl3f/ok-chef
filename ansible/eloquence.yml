@@ -1,0 +1,6 @@
+---
+
+- hosts: blef
+  roles:
+    - eloquence
+    - nginx

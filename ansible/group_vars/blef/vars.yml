@@ -5,5 +5,11 @@ moon_app_path: /opt/moon
 moon_app_name: moon
 moon_app_port: 4444
 
+# Eloquence
+eloq_app_path: /opt/eloquence
+eloq_app_name: eloquence
+eloq_app_port: 8002 
+
 # Nginx
-nginx_site_enabled: [ "moon.conf", "fshare.conf", "fsp.conf", "polaroid.conf" ]
+nginx_site_enabled: [ "moon.conf", "fshare.conf", "fsp.conf", "polaroid.conf", "eloquence.conf" ]
+
