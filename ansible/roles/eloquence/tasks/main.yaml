@@ -22,3 +22,4 @@
     volumes:
       - "{{ eloq_app_path }}/pourparler:/app"
       - "{{ eloq_app_path }}/static:/app/static"
+      - "{{ eloq_app_path }}/media:/media"
