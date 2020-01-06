@@ -24,4 +24,5 @@ INSTALLED_APPS += [
 STATIC_ROOT = '/app/static'
 MEDIA_DIR = "/media/"
 MEDIA_ROOT = "/media/"
-MEDIA_URL = "img/"
+MEDIA_URL = "media/"
+FILE_UPLOAD_PERMISSIONS = 0644
